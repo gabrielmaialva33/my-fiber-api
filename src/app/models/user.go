@@ -1,11 +1,9 @@
 package models
 
-import "github.com/gofrs/uuid"
-
 type User struct {
-	Id       uuid.Generator
+	Id       string `gorm:"type:uuid;primary_key;default:uuid_generate_v4()"`
 	Name     string
-	Nickname string
+	Username string
 	Email    string
-	Password string
+	Password []byte
 }
