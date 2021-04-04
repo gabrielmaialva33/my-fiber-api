@@ -1,6 +1,8 @@
 package controllers
 
 import (
+	validation "github.com/go-ozzo/ozzo-validation"
+	"github.com/go-ozzo/ozzo-validation/is"
 	"github.com/gofiber/fiber/v2"
 	"go-api/src/app/modules/user/models"
 	"go-api/src/app/modules/user/repositories"
@@ -18,8 +20,28 @@ func UsersController(ur repositories.UserRepositoryInterface) *UsersServices {
 	}
 }
 
-// -> Register : function
-func (s *UsersServices) Register(c *fiber.Ctx) error {
+// -> Show : function
+func (s *UsersServices) Show(c *fiber.Ctx) error {
+	id := c.Params("user_id")
+	if err := validation.Validate(id, validation.Required, is.UUIDv4); err != nil {
+		c.Status(fiber.StatusBadRequest)
+		return c.JSON(fiber.Map{
+			"message": err.Error(),
+		})
+	}
+
+	user, err := s.ur.Show(id)
+	if err != nil {
+		c.Status(fiber.StatusInternalServerError)
+		return c.JSON(fiber.Map{
+			"message": err.Error(),
+		})
+	}
+	return c.JSON(user)
+}
+
+// -> Create : function
+func (s *UsersServices) Create(c *fiber.Ctx) error {
 	user := new(models.User)
 	if err := c.BodyParser(&user); err != nil {
 		c.Status(fiber.StatusBadRequest)
@@ -78,18 +100,7 @@ func (s *UsersServices) Login(c *fiber.Ctx) error {
 	})
 }
 
-func User(c *fiber.Ctx) error {
-	cookie := c.Cookies("go-api")
-
-	id, _ := utils.ParseJwt(cookie)
-
-	//var user models.User
-
-	//database.DB.Where("id = ?", id).First(&user)
-
-	return c.JSON(id)
-}
-
+// -> Logout : function
 func Logout(c *fiber.Ctx) error {
 	cookie := fiber.Cookie{
 		Name:     "go-api",

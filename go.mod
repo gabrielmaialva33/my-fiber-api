@@ -3,10 +3,12 @@ module go-api
 go 1.16
 
 require (
+	github.com/asaskevich/govalidator v0.0.0-20210307081110-f21760c49a8d // indirect
 	github.com/cosmtrek/air v1.21.2 // indirect
 	github.com/creack/pty v1.1.11 // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
 	github.com/fatih/color v1.10.0 // indirect
+	github.com/go-ozzo/ozzo-validation v3.6.0+incompatible // indirect
 	github.com/gofiber/fiber/v2 v2.6.0
 	github.com/joho/godotenv v1.3.0 // indirect
 	github.com/pelletier/go-toml v1.8.1 // indirect

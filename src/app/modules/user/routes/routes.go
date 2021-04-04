@@ -7,11 +7,11 @@ import (
 )
 
 func UserRoutes(app *fiber.App, handler *controllers.UsersServices) {
-	app.Post("/api/register", handler.Register)
+	app.Post("/api/register", handler.Create)
 	app.Post("/api/login", handler.Login)
 
 	app.Use(middlewares.IsAuthenticated)
 
 	app.Post("/api/logout", controllers.Logout)
-	app.Get("/api/user", controllers.User)
+	app.Get("/api/user/:user_id", handler.Show)
 }

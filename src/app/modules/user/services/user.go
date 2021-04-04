@@ -25,7 +25,15 @@ func (r UserRepo) Index() ([]models.User, error) {
 }
 
 func (r UserRepo) Show(id string) (*models.User, error) {
-	panic("implement me")
+	var user models.User
+	err := r.db.Debug().Where("id = ?", id).Take(&user).Error
+	if err != nil {
+		return nil, err
+	}
+	if errors.Is(err, gorm.ErrRecordNotFound) {
+		return nil, errors.New("user not found")
+	}
+	return &user, nil
 }
 
 func (r UserRepo) Create(user *models.User) (*models.User, map[string]string) {
@@ -60,7 +68,7 @@ func (r *UserRepo) GetUserByEmailAndPassword(u *models.User) (*models.User, map[
 	var user models.User
 
 	dbErr := map[string]string{}
-	
+
 	err := r.db.Debug().Where("email = ?", u.Email).Take(&user).Error
 
 	if errors.Is(err, gorm.ErrRecordNotFound) {
