@@ -2,14 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4374bc68-c615-4f73-9b8d-dd46d6c0f925" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app/controllers/auth_controller.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/modules/user/controllers/auth_controller.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/modules/user/models/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ab8dfd1d-37fa-4dee-a985-ddaec458ccc8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ab8dfd1d-37fa-4dee-a985-ddaec458ccc8.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ab8dfd1d-37fa-4dee-a985-ddaec458ccc8/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ab8dfd1d-37fa-4dee-a985-ddaec458ccc8/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controllers/authController.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/models/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/models/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controllers/auth_controller.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/models/user.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/database/connect.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/connect.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/routes.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/modules/user/routes/routes.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +30,14 @@
   <component name="GOROOT" url="file:///usr/local/Cellar/go/1.16.2/libexec" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="false" />
@@ -48,7 +60,16 @@
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="settings.saveactions" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/modules/user/interfaces" />
+      <recent name="$PROJECT_DIR$/src/app/modules/user" />
+      <recent name="$PROJECT_DIR$/src/app/modules/user/repository" />
+      <recent name="$PROJECT_DIR$/src/app" />
+      <recent name="$PROJECT_DIR$/src/app/modules/user/models" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">

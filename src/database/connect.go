@@ -1,22 +1,25 @@
 package database
 
-import (
-	"go-api/src/app/models"
+/* import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
+	"os"
 )
 
 var DB *gorm.DB
 
 func Connect() {
-	database, err := gorm.Open(postgres.Open("postgres://postgres:postgres@localhost:5432/postgres"), &gorm.Config{
+	dsn := os.Getenv("DB_URL")
+
+	database, err := gorm.Open(postgres.Open(dsn), &gorm.Config{
 		Logger: logger.Default.LogMode(logger.Info),
 	})
 	if err != nil {
 		panic(" -> Could not connect to the database")
 	}
-
 	DB = database
-	_ = database.AutoMigrate(&models.User{})
+
+	Migrate()
 }
+*/
