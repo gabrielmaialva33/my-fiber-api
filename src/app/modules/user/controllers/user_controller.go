@@ -6,6 +6,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"go-api/src/app/modules/user/models"
 	"go-api/src/app/modules/user/repositories"
+	"go-api/src/app/modules/user/validators"
 	"go-api/src/app/utils"
 	"time"
 )
@@ -42,15 +43,21 @@ func (s *UsersServices) Show(c *fiber.Ctx) error {
 
 // -> Create : function
 func (s *UsersServices) Create(c *fiber.Ctx) error {
-	user := new(models.User)
+	var user models.User
 	if err := c.BodyParser(&user); err != nil {
 		c.Status(fiber.StatusBadRequest)
 		return c.JSON(fiber.Map{
 			"message": err.Error(),
 		})
 	}
+	if err := validators.CreateUserValidator(user); err != nil {
+		c.Status(fiber.StatusUnprocessableEntity)
+		return c.JSON(fiber.Map{
+			"message": err.Error(),
+		})
+	}
 
-	newUser, err := s.ur.Create(user)
+	newUser, err := s.ur.Create(&user)
 	if err != nil {
 		c.Status(fiber.StatusInternalServerError)
 		return c.JSON(fiber.Map{
@@ -63,16 +70,21 @@ func (s *UsersServices) Create(c *fiber.Ctx) error {
 
 // -> Login : function
 func (s *UsersServices) Login(c *fiber.Ctx) error {
-	var user *models.User
-
+	var user models.User
 	if err := c.BodyParser(&user); err != nil {
 		c.Status(fiber.StatusBadRequest)
 		return c.JSON(fiber.Map{
 			"message": err.Error(),
 		})
 	}
+	if err := validators.LoginUserValidator(user); err != nil {
+		c.Status(fiber.StatusUnprocessableEntity)
+		return c.JSON(fiber.Map{
+			"message": err.Error(),
+		})
+	}
 
-	u, userErr := s.ur.GetUserByEmailAndPassword(user)
+	u, userErr := s.ur.GetUserByEmailAndPassword(&user)
 	if userErr != nil {
 		c.Status(fiber.StatusInternalServerError)
 		return c.JSON(fiber.Map{
