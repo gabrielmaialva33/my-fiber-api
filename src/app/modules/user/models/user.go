@@ -11,7 +11,7 @@ type User struct {
 	Name      string     `gorm:"column:name;type:varchar(100)" json:"name"`
 	Username  string     `gorm:"column:username;type:varchar(50)" json:"username"`
 	Email     string     `gorm:"column:email;size:100;not null;unique;unique;index;" json:"email"`
-	Password  string     `gorm:"column:password;type:varchar(255);not null" json:"password,omitempty"`
+	Password  string     `gorm:"column:password;type:varchar(255);not null" json:"password"`
 	Age       uint8      `json:"age"`
 	Birthday  *time.Time `json:"birthday"`
 	Avatar    *string    `json:"avatar" gorm:"column:image"`
@@ -21,9 +21,27 @@ type User struct {
 }
 
 type PublicUser struct {
-	Id        uint64 `gorm:"primary_key;auto_increment" json:"id"`
-	FirstName string `gorm:"size:100;not null;" json:"first_name"`
-	LastName  string `gorm:"size:100;not null;" json:"last_name"`
+	Id       string `gorm:"primary_key;default:uuid_generate_v4()" json:"id"`
+	Name     string `gorm:"column:name;type:varchar(100)" json:"name"`
+	Username string `gorm:"column:username;type:varchar(50)" json:"username"`
+}
+
+type Users []User
+
+func (users Users) PublicUsers() []interface{} {
+	result := make([]interface{}, len(users))
+	for index, user := range users {
+		result[index] = user.PublicUser()
+	}
+	return result
+}
+
+func (u *User) PublicUser() interface{} {
+	return &PublicUser{
+		Id:       u.Id,
+		Name:     u.Name,
+		Username: u.Username,
+	}
 }
 
 // hook -> BeforeCreate

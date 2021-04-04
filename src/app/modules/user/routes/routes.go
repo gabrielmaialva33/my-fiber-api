@@ -11,7 +11,8 @@ func UserRoutes(app *fiber.App, handler *controllers.UsersServices) {
 	app.Post("/api/login", handler.Login)
 
 	app.Use(middlewares.IsAuthenticated)
-
-	app.Post("/api/logout", controllers.Logout)
+	app.Get("/api/users", handler.Index)
 	app.Get("/api/user/:user_id", handler.Show)
+	app.Post("/api/logout", controllers.Logout)
+
 }

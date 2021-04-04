@@ -21,7 +21,16 @@ func UserServices(db *gorm.DB) *UserRepo {
 var _ interfaces.UserRepository = &UserRepo{}
 
 func (r UserRepo) Index() ([]models.User, error) {
-	panic("implement me")
+	var users []models.User
+	err := r.db.Debug().Find(&users).Error
+	if err != nil {
+		return nil, err
+	}
+	if errors.Is(err, gorm.ErrRecordNotFound) {
+		return nil, errors.New("users not found")
+	}
+	
+	return users, nil
 }
 
 func (r UserRepo) Show(id string) (*models.User, error) {

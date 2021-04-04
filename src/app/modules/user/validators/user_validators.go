@@ -21,3 +21,7 @@ func LoginUserValidator(user models.User) error {
 		validation.Field(&user.Password, validation.Required, validation.Length(6, 100)),
 	)
 }
+
+func UUIDUserValidator(id string) error {
+	return validation.Validate(id, validation.Required, is.UUIDv4)
+}

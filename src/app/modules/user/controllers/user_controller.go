@@ -1,8 +1,6 @@
 package controllers
 
 import (
-	validation "github.com/go-ozzo/ozzo-validation"
-	"github.com/go-ozzo/ozzo-validation/is"
 	"github.com/gofiber/fiber/v2"
 	"go-api/src/app/modules/user/models"
 	"go-api/src/app/modules/user/repositories"
@@ -21,10 +19,22 @@ func UsersController(ur repositories.UserRepositoryInterface) *UsersServices {
 	}
 }
 
-// -> Show : function
+func (s *UsersServices) Index(c *fiber.Ctx) error {
+	users := models.Users{}
+	var err error
+	users, err = s.ur.Index()
+	if err != nil {
+		c.Status(fiber.StatusInternalServerError)
+		return c.JSON(fiber.Map{
+			"message": err.Error(),
+		})
+	}
+	return c.JSON(users.PublicUsers())
+}
+
 func (s *UsersServices) Show(c *fiber.Ctx) error {
 	id := c.Params("user_id")
-	if err := validation.Validate(id, validation.Required, is.UUIDv4); err != nil {
+	if err := validators.UUIDUserValidator(id); err != nil {
 		c.Status(fiber.StatusBadRequest)
 		return c.JSON(fiber.Map{
 			"message": err.Error(),
@@ -41,7 +51,6 @@ func (s *UsersServices) Show(c *fiber.Ctx) error {
 	return c.JSON(user)
 }
 
-// -> Create : function
 func (s *UsersServices) Create(c *fiber.Ctx) error {
 	var user models.User
 	if err := c.BodyParser(&user); err != nil {
@@ -68,7 +77,6 @@ func (s *UsersServices) Create(c *fiber.Ctx) error {
 	return c.JSON(newUser)
 }
 
-// -> Login : function
 func (s *UsersServices) Login(c *fiber.Ctx) error {
 	var user models.User
 	if err := c.BodyParser(&user); err != nil {
@@ -108,15 +116,14 @@ func (s *UsersServices) Login(c *fiber.Ctx) error {
 	c.Cookie(&cookie)
 
 	return c.JSON(fiber.Map{
-		"message": "success",
+		"message": "success", "user_id": u.Id,
 	})
 }
 
-// -> Logout : function
 func Logout(c *fiber.Ctx) error {
 	cookie := fiber.Cookie{
 		Name:     "go-api",
-		Value:    "no-cookie",
+		Value:    "",
 		Expires:  time.Now().Add(-time.Hour),
 		HTTPOnly: true,
 	}
