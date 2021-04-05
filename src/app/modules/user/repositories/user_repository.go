@@ -5,14 +5,12 @@ import (
 	"go-api/src/app/modules/user/models"
 )
 
-// - structs
 type userRepository struct {
 	ur interfaces.UserRepository
 }
 
 var _ UserRepositoryInterface = &userRepository{}
 
-// - interfaces
 type UserRepositoryInterface interface {
 	Index() ([]models.User, error)
 	Show(id string) (*models.User, error)
@@ -23,7 +21,6 @@ type UserRepositoryInterface interface {
 	GetUserByEmailAndPassword(*models.User) (*models.User, map[string]string)
 }
 
-// - functions
 func (u *userRepository) Index() ([]models.User, error) {
 	return u.ur.Index()
 }

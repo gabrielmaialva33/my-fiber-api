@@ -2,10 +2,11 @@ package utils
 
 import (
 	"github.com/dgrijalva/jwt-go"
+	"os"
 	"time"
 )
 
-const SecretKey = "KPWDCTjMJO"
+var SecretKey = os.Getenv("KEY")
 
 func GenerateJwt(issuer string) (string, error) {
 	claims := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.StandardClaims{

@@ -2,14 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4374bc68-c615-4f73-9b8d-dd46d6c0f925" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ab8dfd1d-37fa-4dee-a985-ddaec458ccc8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ab8dfd1d-37fa-4dee-a985-ddaec458ccc8.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ab8dfd1d-37fa-4dee-a985-ddaec458ccc8/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ab8dfd1d-37fa-4dee-a985-ddaec458ccc8/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/modules/user/controllers/user_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/modules/user/controllers/user_controller.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/middlewares/auth.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/modules/user/http/middlewares/auth.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/modules/user/controllers/user_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/modules/user/http/controllers/user_controller.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/modules/user/models/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/modules/user/models/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/modules/user/routes/routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/modules/user/routes/routes.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/modules/user/repositories/user_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/modules/user/repositories/user_repository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/modules/user/routes/routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/modules/user/http/routes/routes.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/modules/user/services/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/modules/user/services/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/modules/user/validators/user_validators.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/modules/user/validators/user_validators.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/utils/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/utils/jwt.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +51,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_MARK_IGNORED_FILES_AS_EXCLUDED" value="true" />
     <property name="DatabaseDriversLRU" value="postgresql" />
     <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
@@ -60,11 +65,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/modules/user/http" />
       <recent name="$PROJECT_DIR$/src/app/modules/user/interfaces" />
       <recent name="$PROJECT_DIR$/src/app/modules/user" />
       <recent name="$PROJECT_DIR$/src/app/modules/user/repository" />
       <recent name="$PROJECT_DIR$/src/app" />
-      <recent name="$PROJECT_DIR$/src/app/modules/user/models" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

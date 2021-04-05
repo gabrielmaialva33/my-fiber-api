@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"github.com/gofiber/fiber/v2"
+	"github.com/imdario/mergo"
 	"go-api/src/app/modules/user/models"
 	"go-api/src/app/modules/user/repositories"
 	"go-api/src/app/modules/user/validators"
@@ -29,6 +30,7 @@ func (s *UsersServices) Index(c *fiber.Ctx) error {
 			"message": err.Error(),
 		})
 	}
+
 	return c.JSON(users.PublicUsers())
 }
 
@@ -48,6 +50,7 @@ func (s *UsersServices) Show(c *fiber.Ctx) error {
 			"message": err.Error(),
 		})
 	}
+
 	return c.JSON(user)
 }
 
@@ -75,6 +78,41 @@ func (s *UsersServices) Create(c *fiber.Ctx) error {
 	}
 
 	return c.JSON(newUser)
+}
+
+func (s *UsersServices) Update(c *fiber.Ctx) error {
+	id := c.Params("user_id")
+	if err := validators.UUIDUserValidator(id); err != nil {
+		c.Status(fiber.StatusBadRequest)
+		return c.JSON(fiber.Map{
+			"message": err.Error(),
+		})
+	}
+	var data models.User
+	if err := c.BodyParser(&data); err != nil {
+		c.Status(fiber.StatusBadRequest)
+		return c.JSON(fiber.Map{
+			"message": err.Error(),
+		})
+	}
+	emptyUser := models.User{}
+	err := mergo.Merge(&emptyUser, data)
+	if err != nil {
+		c.Status(fiber.StatusInternalServerError)
+		return c.JSON(fiber.Map{
+			"message": err.Error(),
+		})
+	}
+
+	user, updateErr := s.ur.Update(&emptyUser)
+	if updateErr != nil {
+		c.Status(fiber.StatusInternalServerError)
+		return c.JSON(fiber.Map{
+			"message": updateErr,
+		})
+	}
+
+	return c.JSON(user)
 }
 
 func (s *UsersServices) Login(c *fiber.Ctx) error {

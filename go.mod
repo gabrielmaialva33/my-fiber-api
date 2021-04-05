@@ -10,6 +10,7 @@ require (
 	github.com/fatih/color v1.10.0 // indirect
 	github.com/go-ozzo/ozzo-validation v3.6.0+incompatible // indirect
 	github.com/gofiber/fiber/v2 v2.6.0
+	github.com/imdario/mergo v0.3.12 // indirect
 	github.com/joho/godotenv v1.3.0 // indirect
 	github.com/pelletier/go-toml v1.8.1 // indirect
 	github.com/satori/go.uuid v1.2.0 // indirect

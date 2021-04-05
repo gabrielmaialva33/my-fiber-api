@@ -44,8 +44,8 @@ func (u *User) PublicUser() interface{} {
 	}
 }
 
-// hook -> BeforeCreate
-func (u *User) BeforeCreate(*gorm.DB) (err error) {
+// hook -> BeforeSave
+func (u *User) BeforeSave(*gorm.DB) (err error) {
 	hashPassword, err := utils.Hash(u.Password)
 	if err != nil {
 		return err

@@ -29,7 +29,7 @@ func (r UserRepo) Index() ([]models.User, error) {
 	if errors.Is(err, gorm.ErrRecordNotFound) {
 		return nil, errors.New("users not found")
 	}
-	
+
 	return users, nil
 }
 
@@ -60,7 +60,18 @@ func (r UserRepo) Create(user *models.User) (*models.User, map[string]string) {
 }
 
 func (r UserRepo) Update(user *models.User) (*models.User, map[string]string) {
-	panic("implement me")
+	dbErr := map[string]string{}
+	err := r.db.Debug().Save(&user).Error
+	if err != nil {
+		if strings.Contains(err.Error(), "duplicate") || strings.Contains(err.Error(), "Duplicate") {
+			dbErr["unique_email"] = "email already taken"
+			return nil, dbErr
+		}
+
+		dbErr["db_error"] = "database error"
+		return nil, dbErr
+	}
+	return user, nil
 }
 
 func (r UserRepo) Delete(id string) error {
